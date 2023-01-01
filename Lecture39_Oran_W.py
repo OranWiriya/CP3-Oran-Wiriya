@@ -1,4 +1,4 @@
-#grade calculater
+#grade calculator
 score = int(input("your score : "))
 if score >= 80:
     print("A")
