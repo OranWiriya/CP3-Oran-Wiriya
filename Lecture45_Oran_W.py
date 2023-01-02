@@ -1,7 +1,6 @@
 inputRound = int(input("Please Enter Number : "))
 sum = 0
-print(list(inputRound+1))
 for x in range(inputRound):
-    inputNumber = int(input("x"+x+":"))
+    inputNumber = int(input("x"+str(x+1)+": "))
     sum += inputNumber
 print("summary = ",sum)
