@@ -1,6 +1,8 @@
+#import libery to create widget 
 from tkinter import *
 import math
 
+#function calculate BMI and return text result
 def leftClickbutton(event):
     result = 0
     W = float(textBoxWeight.get())
@@ -22,6 +24,7 @@ def leftClickbutton(event):
         labelResult.configure(text ="อ้วนมาก")
         labelResult.grid(row=2,column=1)
 
+#start program and added data what we want
 MainWindow = Tk()
 labelHeight = Label(MainWindow, text = "ส่วนสูง (cm.)")
 labelHeight.grid(row=0,column=0)
