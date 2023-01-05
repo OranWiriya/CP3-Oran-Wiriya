@@ -2,9 +2,25 @@ from tkinter import *
 import math
 
 def leftClickbutton(event):
+    result = 0
     W = float(textBoxWeight.get())
     H = float(textBoxHeight.get())
-    labelResult.configure(text = (W/((H/100)**2)) )
+    result = labelResult.configure(text = (W/((H/100)**2)))
+    if (result < 18.5 ):
+        labelResultText = Label(MainWindow,text = "ผอมเกินไป")
+        labelResultText.grid(row=2,column=2)
+    elif (result <= 22.9):
+        labelResultText = Label(MainWindow,text = "น้ำหนักปกติ เหมาะสม")
+        labelResultText.grid(row=2,column=2)
+    elif (result <= 24.9):
+        labelResultText = Label(MainWindow,text = "น้ำหนักเกิน")
+        labelResultText.grid(row=2,column=2)
+    elif (result <= 29.9):
+        labelResultText = Label(MainWindow,text = "อ้วน")
+        labelResultText.grid(row=2,column=2)
+    elif (result > 22.9):
+        labelResultText = Label(MainWindow,text = "อ้วนมาก")
+        labelResultText.grid(row=2,column=2)
 
 MainWindow = Tk()
 labelHeight = Label(MainWindow, text = "ส่วนสูง (cm.)")
