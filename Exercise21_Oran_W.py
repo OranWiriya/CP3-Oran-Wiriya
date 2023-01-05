@@ -5,22 +5,22 @@ def leftClickbutton(event):
     result = 0
     W = float(textBoxWeight.get())
     H = float(textBoxHeight.get())
-    result = labelResult.configure(text = (W/((H/100)**2)))
+    result = (W/((H/100)**2))
     if (result < 18.5 ):
-        labelResultText = Label(MainWindow,text = "ผอมเกินไป")
-        labelResultText.grid(row=2,column=2)
+        labelResult.configure(text ="ผอมเกินไป")
+        labelResult.grid(row=2,column=1)
     elif (result <= 22.9):
-        labelResultText = Label(MainWindow,text = "น้ำหนักปกติ เหมาะสม")
-        labelResultText.grid(row=2,column=2)
+        labelResult.configure(text ="น้ำหนักปกติ เหมาะสม")
+        labelResult.grid(row=2,column=1)
     elif (result <= 24.9):
-        labelResultText = Label(MainWindow,text = "น้ำหนักเกิน")
-        labelResultText.grid(row=2,column=2)
+        labelResult.configure(text ="น้ำหนักเกิน")
+        labelResult.grid(row=2,column=1)
     elif (result <= 29.9):
-        labelResultText = Label(MainWindow,text = "อ้วน")
-        labelResultText.grid(row=2,column=2)
+        labelResult.configure(text ="อ้วน")
+        labelResult.grid(row=2,column=1)
     elif (result > 22.9):
-        labelResultText = Label(MainWindow,text = "อ้วนมาก")
-        labelResultText.grid(row=2,column=2)
+        labelResult.configure(text ="อ้วนมาก")
+        labelResult.grid(row=2,column=1)
 
 MainWindow = Tk()
 labelHeight = Label(MainWindow, text = "ส่วนสูง (cm.)")
