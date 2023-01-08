@@ -18,7 +18,14 @@ def calculate_currency(event):
     label_result.grid(row=8,columnspan=3)
 
 def left_click_button(event):
-    pass
+    amount = float(input_box_amount.get())
+    first_currency_input = first_currency.get()
+    second_currency_input = second_currency.get()
+    currency_rate_selected = round(currency_rate.get_rate(first_currency_input, second_currency_input), 2)
+    result_amount = f"{round(currency_rate.convert(first_currency_input, second_currency_input, amount), 2):,}"
+
+    label_currency_rate.configure(text="อัตราแลกเปลี่ยน : " + str(currency_rate_selected))
+    label_result.configure(text=result_amount)
 
 currency_list = getcurrency_list(currency)              
 
