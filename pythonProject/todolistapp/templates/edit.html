@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block title %}
+<title>Todolist</title>
+{% endblock %} {% block content %}
+<nav class="navbar">
+  <h3>Todolist</h3>
+  <div class="navbar-group">
+    <span class="text-user">Hello, {{request.user}}</span>
+    <span>
+      <a href="{% url 'logout' %}" class="text-logout">Logout</a>
+    </span>
+  </div>
+</nav>
+<div class="container">
+    <h1>Edit Todo</h1>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="form-todo-group">
+        <label for="title">todo:</label>
+        <input type="text" name="title" placeholder="Title" id="title" value="{{todo.title}}" />
+        <label for="title">description:</label>
+        <input type="text" name="description" placeholder="Description" id="description" value="{{todo.description}}" />
+        <input type="submit" value="update" />
+      </div>
+    </form>
+</div>
+{% endblock %}

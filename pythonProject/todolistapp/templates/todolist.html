@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block title %}
+<title>Todolist</title>
+{% endblock %} {% block content %}
+<nav class="navbar">
+  <h3>Todolist</h3>
+  <div class="navbar-group">
+    <span class="text-user">Hello, {{request.user}}</span>
+    <span>
+      <a href="{% url 'logout' %}" class="text-logout">Logout</a>
+    </span>
+  </div>
+</nav>
+<div class="container">
+  <h1 class="title-todolist">TODOLIST</h1>
+  <h3>ADD TODO</h3>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="form-todo-group">
+        <label for="title">todo:</label>
+        <input type="text" name="title" placeholder="Title" id="title" />
+        <label for="title">description:</label>
+        <input type="text" name="description" placeholder="Description" id="description" />
+        <input type="submit" value="add" />
+      </div>
+    </form>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="message-container" id="success">{{message}}</div>
+      {% endfor %}
+    {% endif %}
+  <table class="todolist-table">
+    <tr class="todo-header">
+      <th>ID</th>
+      <th>Title</th>
+      <th>User</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    {% for todo in allTodos %}
+    <tr class="todo">
+      <td class="todo-id">{{todo.id}}</td>
+      <td class="todo-title">{{todo.title}}</td>
+      <td class="todo-user">{{todo.userCreated}}</td>
+      <td><a href="/edit/{{todo.id}}" class="todo-edit">Edit</a></td>
+      <td><a href="/delete/{{todo.id}}" class="todo-delete" onclick="return confirm('Are you sure you want to delete {{todo.title}}?')">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

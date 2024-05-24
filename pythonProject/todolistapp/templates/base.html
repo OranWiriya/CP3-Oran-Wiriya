@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block title %} {% endblock %}
+  </head>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 20px;
+      background-color: #03aed2;
+      color: whitesmoke;
+    }
+
+    .navbar-group {
+      display: flex;
+      height: 100%;
+      font-size: medium;
+      gap: 1rem;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+
+    .form-todo-group {
+      display: flex;
+      
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      width: 80dvw;
+    }
+
+    .form-todo-group > input[type='text'] {
+      border: 1px solid #03aed2; 
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    .form-todo-group > input[type='submit'] {
+      border: 0;
+      padding: 8px 16px;
+      border-radius: 4px;
+    }
+
+    .form-todo-group > input[type='submit']:hover {
+      transition: all 0.4s ease-in-out;
+      background-color: #ffd727;
+    }
+
+    .form-header {
+      color: #03aed2;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 30px;
+      border-radius: 10px;
+      background-color: #03aed2;
+    }
+    .form-element {
+      color: whitesmoke;
+    }
+    input:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    .form-element > input[type="text"],.form-element >input[type="email"],
+    .form-element > input[type="password"] {
+      box-sizing: border-box;
+
+      height: 2.5rem;
+      width: 100%;
+      border: 0 !important;
+      border-radius: 0.25rem !important;
+      padding: 5px !important;
+      line-height: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .form-group > input[type="submit"] {
+      background-color: #ffd727;
+      border-radius: 5px;
+      border: none;
+      padding: 16px 32px;
+      color: whitesmoke;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+      font-size: 2rem;
+    }
+    .form-group > input[type="submit"]:hover {
+      background-color: #e0bf2b;
+    }
+
+    .group-text {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .text {
+      color: whitesmoke;
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+
+    .text-link {
+      color: whitesmoke;
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+
+    .text-link:hover {
+      color: #ffd727;
+    }
+
+    .text-user{
+      height: 100%;
+      color: whitesmoke;
+      font-size: 1.25rem;
+      line-height: 1.5rem;
+    }
+
+    .text-logout {
+      color: #010;
+      background: #ffd727;
+      padding: 5px;
+      border-radius: 3px;
+      font-size: 1.25rem;
+      line-height: 1.5rem;
+    }
+
+    .text-logout:hover {
+      background-color: whitesmoke;
+    }
+
+    .ctrl-message {
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .todolist-table {
+      width: 80dvw;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .todo-header > th {
+      border: 2px solid #03aed2;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .todo > td {
+      border: 2px solid #ffd727;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .todo-edit {
+      background-color: #ffd727;
+      color: #010;
+      padding: 6px 12px;
+      border-radius: 4px;
+    }
+
+    .todo-edit:hover {
+      background-color: #e0bf2b;
+    }
+
+    .todo-delete {
+      background-color: #ff3f3f;
+      color: whitesmoke;
+      padding: 6px 12px;
+      border-radius: 4px;
+    }
+
+    .todo-delete:hover {
+      background-color: #e00000;
+    }
+
+    .message-container#success {
+      position: static;
+      width: 80%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      background-color: #52c41a;
+      border:  1px solid #46a516;
+      border-radius: 8px;
+      animation: none;
+      text-align: center;
+    }
+    
+    .message-container {
+      
+      position: absolute;
+      color: whitesmoke;
+      background-color: #03aed2;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      bottom: -100px;
+
+      animation: popup 0.5s ease-in-out forwards;
+    }
+
+    @keyframes popup {
+      from {
+        bottom: -150px;
+        
+      }
+      80% {
+        bottom: -80px;
+      }
+      to {
+        bottom: -100px;
+      }
+    }
+  </style>
+  <body>
+    {% block content %} {% endblock %}
+  </body>
+</html>
